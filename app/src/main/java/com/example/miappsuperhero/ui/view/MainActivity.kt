@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.miappsuperhero.databinding.ActivityMainBinding
+import com.example.miappsuperhero.ui.domain.model.SuperheroItem
 import com.example.miappsuperhero.ui.view.recycleview.SuperheroAdapter
 import com.example.miappsuperhero.ui.view.DetailSuperheroActivity.Companion.EXTRA_ID
 import com.example.miappsuperhero.ui.viewmodel.SuperheroViewModel
@@ -53,9 +54,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-        adapter = SuperheroAdapter {
-            Log.i("milito", it)
-            navigateToDetail(it) }
+        adapter = SuperheroAdapter (onItemSelected = {navigateToDetail(it)}, addFavSuperhero =  {addFavHeroToDB(it)})
         binding.rvSuperhero.setHasFixedSize(true)
         binding.rvSuperhero.layoutManager = LinearLayoutManager(this)
         binding.rvSuperhero.adapter = adapter
@@ -68,6 +67,11 @@ class MainActivity : AppCompatActivity() {
         Log.i("milito", id)
         intent.putExtra(EXTRA_ID, id)
         startActivity(intent)
+    }
+
+    private fun addFavHeroToDB(superheroItem: SuperheroItem){
+
+        superheroViewModel.addFavSuperhero(superheroItem)
     }
 
 
