@@ -1,4 +1,4 @@
-package com.example.miappsuperhero.ui.domain.model
+package com.example.miappsuperhero.ui.domain
 
 import com.example.miappsuperhero.data.SuperheroRepository
 import com.example.miappsuperhero.data.database.entities.FavSuperheroIdEntity
